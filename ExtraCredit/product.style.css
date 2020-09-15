@@ -1,0 +1,43 @@
+body{
+    width: 800px; 
+    margin: 0 auto;
+    align-content: center;
+}
+
+img {
+    width: 200px;
+    height: 200px;
+    padding: 10px;
+}
+
+/*Typography*/
+header, footer{
+    font-weight: bold;
+    font-size: 30px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+
+/*Headings*/
+h1, h2, header, footer{
+    text-align: center;
+    background-color: cornsilk
+}
+
+p, section {
+    text-align: center;
+}
+h3 {
+    align-content: center;
+}
+/*general*/
+main {
+    display: inline;
+    flex-flow: none;
+    justify-content: space-around;
+    background-color: cornflowerblue;
+}
+
+/*general*/
+div {
+    background-color: cornflowerblue;
+}
