@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+    function isNoneNegIntString(val, returnErrors=false){
+        // this function returns true if string_to_check is a non negative integer. If returnErrorstrue it will return the array of reasons it is not a non-negative integer
+        errors = []; // assume no errors at first
+        if(Number(val) != val) {
+        errors.push('Not a number!');
+        }
+        else {
+            if(val < 0) errors.push('Negative value!');
+            if(parseInt(val) != val) errors.push('Not an integer!');
+        }
+        return returnErrors ? errors : ((errors.length > 0) ? false : true);
+        }
+
+    function checkQuantityTextbox(){
+            qty_textbox_message.innerHTML = isNonNegInt(quantity_textbox.value, true).
+            join(" ");
+        }
+
+    function displayPurchase(purchase_qty) {
+        if(isNonNegInt(purchase_qty)) {
+        document.write(`Thank you for ording ${purchase_qty} things!`);
+        } else {
+            checkQuantityTextbox();
+        }
+    }
+    </script>
+
+</head>
+<body>
+    <label for="frname">quantity desired</label><br>
+    <input type="text" id="quantity_textbox" name="frame" onkeyup="checkQuantityTextbox();">
+    <span id='qty_textbox_message'>Enter a quantity</span>
+    <br>
+    <input type="button" value="Purchase" onclick="displayPurchase(quantity_textbox.value);">
+</body>
+</html>
