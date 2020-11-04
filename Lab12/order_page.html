@@ -29,7 +29,7 @@
     function displayPurchase() {
         purchase_qty = GET["quantity_textbox"];
         if(isNonNegIntString(purchase_qty)) {
-        document.getElementById('the_body').innerHTML= `Thank you for ording ${purchase_qty} things!`;
+        document.getElementById('the_body').innerHTML= `Thank you for ordering ${purchase_qty} things!`;
         } else {
             checkQuantityTextbox();
         }
