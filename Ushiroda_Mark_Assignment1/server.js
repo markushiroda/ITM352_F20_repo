@@ -31,7 +31,7 @@ app.post("/process_purchase", function (request, response) {
             // if all quantities are valid, generate the invoice// 
             const stringified = queryString.stringify(POST);
             if (hasvalidquantities && hasquantities) {
-                response.redirect("./Invoice.html?"+stringified); // using the invoice.html and all the data that is input//
+                response.redirect("./invoice.html?"+stringified); // using the invoice.html and all the data that is input//
             }  
             else {response.send('Enter a valid quantity!')} 
         }
