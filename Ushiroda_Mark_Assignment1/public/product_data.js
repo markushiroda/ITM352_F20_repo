@@ -6,31 +6,31 @@ products = [
         //Product 1
     "product": "Canele",
     "price": 4.00,
-    "image": "./images/Canele.png"
+    "image": "./Images/Canele.png"
     },
     {
         //Product 2
     "product": "Croissant",
     "price": 5.00,
-    "image": "./images/Croissant.png"
+    "image": "./Images/Croissant.png"
     },
     {
         //Product 3
     "product" : "Macarons",
     "price": 3.00,
-    "image": "./images/Macarons.png"
+    "image": "./Images/Macarons.png"
     },
     {
         //Product 4
     "product": "Madeline",
     "price": 2.00,
-    "image": "./images/Madeline.png" 
+    "image": "./Images/Madeline.png" 
     },
     {
         //Product 5
     "product": "Pain du Chocolat",
     "price": 7.00,
-    "image": "./images/PainDuChocolat.png" 
+    "image": "./Images/PainDuChocolat.png" 
         }
 ];
 
