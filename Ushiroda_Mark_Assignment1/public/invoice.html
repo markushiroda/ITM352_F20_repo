@@ -2,7 +2,7 @@
 src="./product_data.js" type="text/javascript"> //uses get request for the product list//</script> 
 <script>
   //referenced from assignment 1 examples//
-        let params = (new URL(document.location)).searchParams; //takes data from query called submit_purchase, if it has it then it looks for the quantities// 
+        let params = (new URL(document.location)).searchParams; //takes data from query called submitPurchase, if it has it then it looks for the quantities// 
         var quantities = [];
         // processing the invoice to create the form from the data entered//
         if (params.has('submitPurchase')) { // loop that pulls info//
@@ -25,12 +25,16 @@ src="./product_data.js" type="text/javascript"> //uses get request for the produ
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>Document</title>
+      <title> Receipt</title>
       <link href="invoice_style.css" rel="stylesheet">
       
     </head>
   
     <body>
+      <div id="header">
+        <h1>Receipt</h1>
+      </div>
+      
         <table border="1">
           <tbody>
               <tr>
@@ -97,7 +101,7 @@ src="./product_data.js" type="text/javascript"> //uses get request for the produ
                   </tr>
                 </tbody>
               </table>   
-              <div>
+              <div id="delivery">
                 <br><b>
                   OUR DELIVERY POLICY IS: A subtotal $0 - $19.99 will be $2 shipping
                   A subtotal $20 - $39.99 will be $5 shipping

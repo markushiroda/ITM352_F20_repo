@@ -1,9 +1,15 @@
 /* style referenced from SmartPhoneProducts2 */
 /* general styling */
-html {
-  
+h1{
+  font-size: 30px;
+  text-align: center;
+}
+body{
+  background-color:lightblue;
+}
+table{
+  border-collapse: collapse;
     font-family: 'Playball';  
-    background-color:lightblue;
     font-size: 15px;
     margin-right: 15%;
     margin-left: 15%;
@@ -20,7 +26,12 @@ html {
 }
 th, td {
     padding: 15px;
-    text-align: left;
-    background-color: lightblue;
+    text-align: center;
+    background-color:beige;
+    border-color:black;
+    color:black;
 
+  }
+  #delivery{
+    text-align: center;
   }
