@@ -1,4 +1,5 @@
-// Creaying the array of products and took this from SmartPhoneProducts3
+// Creaying the array of products and took this from SmartPhoneProducts3//
+// all images from google//
 
 products = [
     {

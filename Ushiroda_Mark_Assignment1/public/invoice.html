@@ -1,11 +1,11 @@
 <script 
-src="./product_data.js" type="text/javascript"> //uses get request for the product list</script> 
+src="./product_data.js" type="text/javascript"> //uses get request for the product list//</script> 
 <script>
-  //referenced from assignment 1 examples
+  //referenced from assignment 1 examples//
         let params = (new URL(document.location)).searchParams; //takes data from query called submit_purchase, if it has it then it looks for the quantities// 
         var quantities = [];
-        // processing the invoice to create the form from the data entered
-        if (params.has('submitPurchase')) { // loop that pulls information//
+        // processing the invoice to create the form from the data entered//
+        if (params.has('submitPurchase')) { // loop that pulls info//
           for (i = 0; i < products.length; i++) {
             if (params.has(`quantity${i}`)) {
               a_qty = params.get(`quantity${i}`);
@@ -99,9 +99,9 @@ src="./product_data.js" type="text/javascript"> //uses get request for the produ
               </table>   
               <div>
                 <br><b>
-                  OUR SHIPPING POLICY IS:A subtotal $0 - $49.99 will be $2 shipping
-                  A subtotal $50 - $99.99 will be $5 shipping
-                  Subtotals over $100 will be charged 5% of the subtotal amount
+                  OUR DELIVERY POLICY IS: A subtotal $0 - $19.99 will be $2 shipping
+                  A subtotal $20 - $39.99 will be $5 shipping
+                  Subtotals over $40 will be charged 5% of the subtotal amount
               </b> </div>
         </body>
         </html>
