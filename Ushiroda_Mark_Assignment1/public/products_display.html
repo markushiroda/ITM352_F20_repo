@@ -26,11 +26,11 @@
                 if (params.has(`quantity${i}`)) {
                     a_qty = params.get(`quantity${i}`);
                     // make textboxes sticky in case of invalid data//
-                    product_form[`quantity${i}`].value = a_qty;
+                    product_main_display[`quantity${i}`].value = a_qty;
                     total_qty += a_qty;
                     if (!isNonNegInt(a_qty)) {
                         has_errors = true; // invalid quantity//
-                        checkQuantityTextbox(product_form[`quantity${i}`]); // show where the error is//
+                        checkQuantityTextbox(product_main_display[`quantity${i}`]); // show where the error is//
                     }
                 }
             }
