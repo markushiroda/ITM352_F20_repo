@@ -124,8 +124,8 @@ app.post("/process_register", function (req, res) {
       errors.push('Letters And Numbers Only for Username')
     }
   
-    //password is min 8 characters long 
-    if ((req.body.password.length < 8 && req.body.username.length > 20)) {
+    //password is min 6 characters long 
+    if ((req.body.password.length < 6 && req.body.username.length > 20)) {
       errors.push('Password Too Short')
     }
     // check to see if the passwords match
