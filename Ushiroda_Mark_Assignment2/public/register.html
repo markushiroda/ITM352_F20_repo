@@ -1,4 +1,4 @@
-
+<!-- Registration page referenced from w3 Schools and lab 14 -->
 <html lang="en">
 
     <head>
@@ -85,6 +85,7 @@
             Register before your purchase!
         </header>
         <div>
+            <!-- Creates registration form, from w3 schools -->
             <form method="POST" action="process_register" name="Register">
                 <input type="text" name="fullname" size="40" pattern="[a-zA-Z]+[ ]+[a-zA-Z]+"
                     placeholder="Enter First & Last Name"><br /> <!-- placeholder for registration (first & last name) -->
@@ -101,7 +102,7 @@
                 <input type="submit" value="Register" id="submit">
             </form>
             <script>
-                Register.action += document.location.search;
+                Register.action += document.location.search; //saves query string from products
             </script>
         </div>
     </body>

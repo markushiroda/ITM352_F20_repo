@@ -44,20 +44,20 @@ app.post("/process_purchase", function (request, response) {
             // if all quantities are valid, generate the invoice// 
             const stringified = queryString.stringify(POST);
             if (hasvalidquantities && hasquantities) {
-                response.redirect("./login.html?"+stringified); //changed from ./invoice to login so it goes there//
+                response.redirect("./login.html?"+stringified); //changed from ./invoice to login so it goes there
                 return; //stops the function
             }  
             else {response.redirect("./products_display.html?" + stringified)}
         }
     });
     
-    //repeats the isNonNegInt function from the index.html file because there is no relation between the index.html page and server//
+    //repeats the isNonNegInt function from the index.html file because there is no relation between the index.html page and server
     function isNonNegInt(q, returnErrors = false) {
-        errors = []; // assume that quantity data is valid//
+        errors = []; // assume that quantity data is valid
         if (q == "") { q = 0; }
-        if (Number(q) != q) errors.push('Not a number!'); //check if value is a number//
-        if (q < 0) errors.push('Negative value!'); //check if value is a positive number//
-        if (parseInt(q) != q) errors.push('Not an integer!'); //check if value is a whole number//
+        if (Number(q) != q) errors.push('Not a number!'); //check if value is a #
+        if (q < 0) errors.push('Negative value!'); //check if value is a positive #
+        if (parseInt(q) != q) errors.push('Not an integer!'); //check if value is a whole #
         return returnErrors ? errors : (errors.length == 0);
     }
 // login stuff starts here , add more comments and reference// 
@@ -128,18 +128,12 @@ app.post("/process_register", function (req, res) {
     if ((req.body.password.length < 8 && req.body.username.length > 20)) {
       errors.push('Password Too Short')
     }
-    // check to see if passwords match
+    // check to see if the passwords match
     if (req.body.password !== req.body.repeat_password) { 
       errors.push('Password Not a Match')
     }
 
-    //if (errors.length == 0) {
-       //console.log('none');
-       //req.query.username = reguser;
-       //req.query.name = req.body.name;
-       //res.redirect('/Invoice.html?' + queryString.stringify(req.query))
-    //}
-
+    //if no errors, this makes it remember the user's registration in the json made (lab 14)
     if (errors.length == 0) {
         POST = req.body;
         console.log('no errors');
@@ -152,6 +146,7 @@ app.post("/process_register", function (req, res) {
         fs.writeFileSync(filename, data, "utf-8");
         res.redirect('./invoice.html?' + queryString.stringify(req.query))
     }
+    //directs user to registration page if there are errrors
     if (errors.length > 0) {
         console.log(errors)
         req.query.name = req.body.name;
@@ -164,20 +159,20 @@ app.post("/process_register", function (req, res) {
         res.redirect('register.html?' + queryString.stringify(req.query))
     }
 });
-
+//to render invoice on server
 app.post("/process_purchase", function (request, response) {
     let POST = request.body; // data would be packaged in the body//
   console.log(POST);
     if (typeof POST['submitPurchase'] != 'undefined') {
-        var hasvalidquantities=true; // creating a varibale assuming that it'll be true// 
+        var hasvalidquantities=true; // creates a varibale assuming that it will be true// 
         var hasquantities=false
         for (i = 0; i < products.length; i++) {
             
                         qty=POST[`quantity${i}`];
-                        hasquantities=hasquantities || qty>0; // If it has a value bigger than 0 then it is good//
+                        hasquantities=hasquantities || qty>0; // If its value bigger than 0 then it is good//
                         hasvalidquantities=hasvalidquantities && isNonNegInt(qty);    // if it is both a quantity over 0 and is valid//     
         } 
-        // if all quantities are valid, generate the invoice// 
+        // if all quantities are valid, it will generate the invoice// 
         const stringified = queryString.stringify(POST);
         if (hasvalidquantities && hasquantities) {
             response.redirect("./login.html?"+stringified); // using the login.html and all the data that is input//
@@ -195,5 +190,5 @@ function isNonNegInt(q, returnErrors = false) {
     return returnErrors ? errors : (errors.length == 0);
 
 }
-app.use(express.static('./public')); //Creates a static server using express from the public folder
+app.use(express.static('./public')); //Creates static server using express from the public folder
 app.listen(8080, () => console.log(`listen on port 8080`))
