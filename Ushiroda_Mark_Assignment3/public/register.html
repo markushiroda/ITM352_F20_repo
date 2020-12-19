@@ -1,0 +1,199 @@
+<!-- Registration page referenced from w3 Schools and lab 14 -->
+<html lang="en">
+
+    <head>
+        <script>
+            let params = (new URL(document.location)).searchParams;
+    
+            window.onload = function () { // creating the function for window.onload
+                //if there are errors in the registration data it will notify the user
+                if (params.has('errors')) {
+    
+                    console.log("invalid");
+                    alert('Fix the following errors: \n' + params.get('errors'));
+                }
+            }    
+        </script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Registration Page</title>
+        <link rel="stylesheet" href="products_style.css"> <!-- Styling Sheet -->
+        <style>
+            /* Styling */
+            header, body, form, input, .topnav, .topnav a {
+                font-family: "Playfair Display";
+                letter-spacing: 5px;
+            }
+            header{
+                text-align: center;
+                font-size: 50px;
+                margin-bottom: 30px;
+            }
+            body {
+                background-color: lightblue;
+            }
+            form{
+        text-align: center;
+    }
+         /* referenced from w3schools website, makes the input boxes centered*/ 
+    input[type=text], input[type=password], input[type=email] {
+            text-align: center;
+            font-size: 15px;
+            width: 60%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            
+        }
+    
+    input[type=submit] {
+            font-size: 40px;
+            color:black;
+            border: none;
+            margin-top: 25px;
+        }
+        .topnav {
+          overflow: hidden;
+          background-color: white;
+        }
+        
+        .topnav a {
+          float: left;
+          color: black;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 17px;
+        }
+        /* Changes color on hover*/
+        .topnav a:hover {
+          background-color: lightblue;
+          color: black;
+        }
+        </style>
+    </head>
+    
+    <body>
+        <div class="topnav"> 
+            <a class="active" href="./index2.html">Home</a> <!-- Connecting to index page -->
+            <!-- Right-sided navbar links. Hide them on small screens -->
+            <div class="w3-right w3-hide-small">
+            <a href="./login.html" class="w3-bar-item w3-button">Login</a>
+            <a href="./index2.html#about" class="w3-bar-item w3-button">About</a>
+            <a href="#menu" class="w3-bar-item w3-button">Shop</a>
+            <a href="#contact" class="w3-bar-item w3-button">Contact</a>
+            <a href="./cart.html" class="w3-bar-item w3-button">Shopping Cart</a>
+            </div>
+            
+        
+          </div>
+          <header>
+            Register before your purchase!
+        </header>
+        <div>
+
+    <!-- Made with help from lab14 exercise 4-->
+    <form name="registration_form" action="javascript:register_user();" method="GET">
+        <br>
+            <input type="text" name="name" size="40" placeholder="Enter Name">
+            <span id="name_message"></span>
+        <input type="text" name="username" size="40" placeholder="Enter Username">
+        <span id="username_message"></span>
+        <input type="email" name="email" size="40" placeholder="Enter Email">
+        <span id="email_message"></span>
+        <input type="password" name="password" size="40" placeholder="Enter Password">
+        <span id="password_message"></span>
+        <input type="password" name="repeat_password" size="40" placeholder="Confirm Password">
+        <span id="repeat_password_message"></span>
+        <br>
+        <input type="submit" value="Register" id="submit" name="register_button">
+
+    </form>
+            <script>
+                Register.action += document.location.search; //saves query string from products
+            </script>
+        </div>
+    </body>
+    <script>
+        //this function was taken from w3schools.com
+        function setCookie(cname, cvalue, exdays) { //set cookie with name, value, and expiration
+            var d = new Date(); //today's date
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000)); //expiration is one day after login
+            var expires = "expires=" + d.toUTCString(); //put in string
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/"; //put into local cookie
+        }
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+        function eraseCookie(name) {
+            document.cookie = name + '=; Max-Age=-99999999;';
+        }
+
+        //taken from stackoverflow.com
+        function GoBackWithRefresh(event) { //function to go to previous page
+            var past = document.referrer;
+            var pastPage = past.split('/').pop(); //get value of string after '/' in past page query string
+
+            if (pastPage != 'login.html' && pastPage != 'register.html') { //if the past page is the login, registration, or cart
+                window.location = past;
+            } else if (pastPage == 'login.html' && pastPage == 'register.html') {
+                window.history.go(-2); 
+            } else {
+                window.location.href = './index2.html'; //go to home page
+            }
+        };
+
+        //Taken from Assignment1_1Microservice example
+        function register_user() { //validate the form on the server and return errors (if any) to the browser without leaving the page
+            data = new URLSearchParams(new FormData(registration_form)); // 'data' is set to the registration_form data string
+
+            fetch('/register_user', //fetch the response from app.post for register_user from the server
+                {
+                    method: 'post',
+                    body: data,
+                    redirect: 'follow'
+                }
+            ).then(function (response) { //after fetch comes back from the server, execute function
+
+                if (response.ok) { //if the response is ok
+
+                    response.json().then(function (errors) { //then make the response 'errors' a json object
+
+                        if (Object.keys(errors).length == 0) { //if no errors...
+                            sessionStorage.clear(); //reset session
+                            var theDate = JSON.stringify(Date()); //sets the time of login
+                            var username = registration_form.username;
+                            var userEmail = registration_form.email;
+                            var user_name = registration_form.name;
+                            setCookie('last_login_time', JSON.parse(theDate),'username', username, 'email', userEmail, 'name', user_name); //remember this login time in session
+                            response.redirect(GoBackWithRefresh()); //redirect to last-visited page
+                        } else {
+
+                            for (errorId in errors) { // if there are errors associated with the error message span
+                                document.getElementById(errorId + '_message').innerHTML = errors[errorId]; //write those errors to the appropriate span
+                            }
+
+                        }
+
+                    });
+
+                }
+
+                else {
+                    console.log('Network request for /register_user failed with response ' + response.status + ': ' + response.statusText); //notify me in the console if the request didn't go through
+                }
+
+            });
+        }
+
+    </script>
+
+</body>
